@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">AnyHome</string>
+    <string name="subtitle_select_launcher">Select and pin your default launcher</string>
+    <string name="search_hint">Search by app name or package…</string>
+    <string name="current_home_badge">Current</string>
+    <string name="btn_clear_search">Clear search</string>
+    <string name="btn_system_settings">System Settings</string>
+    <string name="btn_reset_default">Reset</string>
+    <string name="btn_switch_language">Switch language</string>
+    <string name="empty_search_title">No apps found</string>
+    <string name="empty_search_desc">Try a different search term or check spelling</string>
+    <string name="total_apps_format">%1$d apps found</string>
+    <string name="loading_apps">Scanning installed launcher apps…</string>
+    <string name="toast_reset_success">Default launcher selection reset</string>
+    <string name="toast_cannot_open_settings">Unable to open system settings</string>
 </resources>

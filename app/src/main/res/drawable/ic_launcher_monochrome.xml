@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <!-- House Body -->
+  <path
+      android:pathData="M37,48 L54,32 L71,48 L71,73 C71,75.2 69.2,77 67,77 L41,77 C38.8,77 37,75.2 37,73 Z"
+      android:fillColor="#FFFFFF" />
+  <!-- Overhang Roof -->
+  <path
+      android:pathData="M54,27 L29,47.5 C28.2,48.2 28.8,49.5 29.8,49.5 L34,49.5 L54,33 L74,49.5 L78.2,49.5 C79.2,49.5 79.8,48.2 79,47.5 Z"
+      android:fillColor="#FFFFFF" />
+  <!-- Chimney -->
+  <path
+      android:pathData="M65,37 L65,31 C65,30.5 65.5,30 66,30 L69.5,30 C70,30 70.5,30.5 70.5,31 L70.5,41.5 Z"
+      android:fillColor="#FFFFFF" />
+  <!-- Cutout Doorway (black/transparent) -->
+  <path
+      android:pathData="M48,77 L48,63 C48,59.7 50.7,57 54,57 C57.3,57 60,59.7 60,63 L60,77 Z"
+      android:fillColor="#000000" />
+  <!-- Inner Spark in Doorway -->
+  <path
+      android:pathData="M54,61 L55.2,64.5 L58.7,65.7 L55.2,66.9 L54,70.4 L52.8,66.9 L49.3,65.7 L52.8,64.5 Z"
+      android:fillColor="#FFFFFF" />
+</vector>

@@ -3,6 +3,7 @@ package com.draco.anyhome.recyclers
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,12 +24,16 @@ class SelectRecyclerAdapter(
     var appList: List<AppInfo>
 ) : RecyclerView.Adapter<SelectRecyclerAdapter.ViewHolder>() {
     private lateinit var sharedPrefs: SharedPreferences
+    private val packageManager: PackageManager = context.packageManager
+    var onAppSelectedListener: ((AppInfo) -> Unit)? = null
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img = itemView.findViewById(R.id.img) as ImageView
-        val name = itemView.findViewById(R.id.name) as TextView
+        val img: ImageView = itemView.findViewById(R.id.img)
+        val name: TextView = itemView.findViewById(R.id.name)
+        val pkgName: TextView = itemView.findViewById(R.id.pkgName)
+        val currentBadge: View = itemView.findViewById(R.id.currentBadge)
 
-        val translationY = SpringAnimation(itemView, SpringAnimation.TRANSLATION_Y).apply {
+        val translationY: SpringAnimation = SpringAnimation(itemView, SpringAnimation.TRANSLATION_Y).apply {
             spring = SpringForce()
                 .setFinalPosition(0f)
                 .setDampingRatio(SpringForce.DAMPING_RATIO_LOW_BOUNCY)
@@ -38,7 +43,6 @@ class SelectRecyclerAdapter(
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
@@ -50,26 +54,37 @@ class SelectRecyclerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = appList[position]
 
-        holder.itemView.setOnClickListener {
-            with (sharedPrefs.edit()) {
-                putString("home_app", info.id)
-                apply()
-            }
+        holder.name.text = info.label
+        holder.pkgName.text = info.id
+        holder.currentBadge.visibility = if (info.isCurrentHome) View.VISIBLE else View.GONE
 
-            (context as AppCompatActivity).finish()
-
-            val intent = Intent(context, LauncherActivity::class.java)
-            context.startActivity(intent)
+        // Load application icon asynchronously
+        try {
+            val iconDrawable = packageManager.getApplicationIcon(info.id)
+            Glide.with(holder.img.context)
+                .load(iconDrawable)
+                .fitCenter()
+                .into(holder.img)
+        } catch (e: Exception) {
+            holder.img.setImageResource(R.mipmap.ic_launcher)
         }
 
-        /* Setup app icons and labels */
-        Glide.with(holder.img)
-            .load(context.packageManager.getApplicationIcon(info.id))
-            .circleCrop()
-            .into(holder.img)
+        holder.itemView.setOnClickListener {
+            if (onAppSelectedListener != null) {
+                onAppSelectedListener?.invoke(info)
+            } else {
+                with(sharedPrefs.edit()) {
+                    putString("home_app", info.id)
+                    apply()
+                }
 
-        holder.name.text = info.label
-        holder.img.contentDescription = info.label
+                if (context is AppCompatActivity) {
+                    context.finish()
+                }
+                val intent = Intent(context, LauncherActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -77,6 +92,6 @@ class SelectRecyclerAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        return appList[position].hashCode().toLong()
+        return appList[position].id.hashCode().toLong()
     }
 }

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.draco.anyhome">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.software.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
         </intent>
     </queries>
 
@@ -22,7 +28,7 @@
         android:stateNotNeeded="true"
         android:resumeWhilePausing="true"
         android:banner="@drawable/banner"
-        tools:targetApi="lollipop">
+        android:localeConfig="@xml/locales_config">
         <activity android:name=".views.LauncherActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.AppCompat.Translucent"
@@ -35,7 +41,9 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.SelectActivity" />
+        <activity
+            android:name=".views.SelectActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

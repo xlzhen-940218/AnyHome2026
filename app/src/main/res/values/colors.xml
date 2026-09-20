@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- Brand Primary (Electric Indigo) -->
+    <color name="brand_primary">#4F46E5</color>
+    <color name="brand_primary_variant">#4338CA</color>
+    <color name="brand_secondary">#06B6D4</color>
+    <color name="brand_accent">#8B5CF6</color>
+
+    <!-- Light Theme Colors -->
+    <color name="md_theme_light_primary">#4F46E5</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#EEF2FF</color>
+    <color name="md_theme_light_onPrimaryContainer">#312E81</color>
+    <color name="md_theme_light_surface">#F8FAFC</color>
+    <color name="md_theme_light_onSurface">#0F172A</color>
+    <color name="md_theme_light_surfaceContainer">#FFFFFF</color>
+    <color name="md_theme_light_surfaceContainerHigh">#F1F5F9</color>
+    <color name="md_theme_light_outline">#E2E8F0</color>
+    <color name="md_theme_light_textSecondary">#64748B</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="md_theme_dark_primary">#818CF8</color>
+    <color name="md_theme_dark_onPrimary">#1E1B4B</color>
+    <color name="md_theme_dark_primaryContainer">#312E81</color>
+    <color name="md_theme_dark_onPrimaryContainer">#E0E7FF</color>
+    <color name="md_theme_dark_surface">#0B0F19</color>
+    <color name="md_theme_dark_onSurface">#F1F5F9</color>
+    <color name="md_theme_dark_surfaceContainer">#151C2C</color>
+    <color name="md_theme_dark_surfaceContainerHigh">#1E273B</color>
+    <color name="md_theme_dark_outline">#26334D</color>
+    <color name="md_theme_dark_textSecondary">#94A3B8</color>
+
+    <!-- Badges and Accents -->
+    <color name="badge_current_bg">#0D9488</color>
+    <color name="badge_current_bg_soft">#140D9488</color>
+    <color name="badge_current_text">#14B8A6</color>
+    <color name="search_box_stroke">#33818CF8</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

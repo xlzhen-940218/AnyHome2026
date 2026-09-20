@@ -12,22 +12,20 @@ class LauncherActivityViewModel(application: Application) : AndroidViewModel(app
     /**
      * App ID for home activity
      */
-    private val homeApp: String
-        get() = sharedPrefs.getString("home_app", "")!!
+    val homeApp: String
+        get() = sharedPrefs.getString("home_app", "") ?: ""
 
     /**
      * App launcher intent for home activity
      */
     val homeAppIntent: Intent?
-        get() = packageManager.getLaunchIntentForPackage(homeApp)
+        get() = if (homeApp.isNotBlank()) packageManager.getLaunchIntentForPackage(homeApp) else null
 
     /**
      * Has the user selected a valid home application yet?
      */
     fun isHomeAppSet(): Boolean {
-        if (homeApp.isNotBlank())
-            return true
-
-        return false
+        if (homeApp.isBlank()) return false
+        return homeAppIntent != null
     }
 }
